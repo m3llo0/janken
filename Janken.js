@@ -71,8 +71,15 @@ function playRound() {
 
 //Loop to create 5 rounds
 function playGame() {
-    for (let n=0; n<5; n++) {
+    for (let n=0; n<3; n++) {
         playRound()
+    }
+    if (humanScore < compScore){
+        console.log("End of Game: GG go next loser LOL")
+    } else if (humanScore == compScore) {
+        console.log("End of Game: Hmm nubbad nubbad")
+    } else {
+        console.log("End of Game: YOU ARE A WINNER SIUUUUU!")
     }
 }
 playGame()
