@@ -1,32 +1,38 @@
 let humanScore = 0
 let compScore = 0
+let humChoice
+let compChoice
 
+//Method to randomise choice
 function getComputerChoice() {
-    compChoice = Math.floor(Math.random() * 3);
+    return Math.floor(Math.random() * 3);
 }
 
-getComputerChoice()
-// Mapping random number to choice
-switch (compChoice) {
-    case 0:
-        compChoice = "rock"
-        break
-    case 1:
-        compChoice = "paper"
-        break
-    case 2:
-        compChoice = "scissors"
-        break
-}
-// I have to turn the human choice into case-insensitive
+
+// Method to obtain user input and turn it case-insensitive
 function getHumanChoice(){
-    humChoice = prompt("Rock, Paper or Scissors?").toLowerCase()
+    return prompt("Rock, Paper or Scissors?").toLowerCase()
 }
-// Getting the player's input
-getHumanChoice()
-console.log(humChoice)
 
-function playround(humChoice, compChoice) {
+function playRound() {
+    // Getting the player's input and assigning it to humChoice since its a global var
+    humChoice = getHumanChoice();
+    console.log(humChoice)
+
+    compChoice = getComputerChoice();
+   // Mapping random number to computer choice
+    switch (compChoice) {
+        case 0:
+            compChoice = "rock"
+        break
+        case 1:
+            compChoice = "paper"
+        break
+        case 2:
+            compChoice = "scissors"
+        break
+} 
+    //Game Mechanism for comparing choices
     if (humChoice == compChoice) {
         console.log(`Tie! You: ${humanScore}, Computer: ${compScore}`)
     } else {
@@ -62,6 +68,11 @@ function playround(humChoice, compChoice) {
         }
     }
 }
-    
 
-playround(humChoice, compChoice)
+//Loop to create 5 rounds
+function playGame() {
+    for (let n=0; n<5; n++) {
+        playRound()
+    }
+}
+playGame()
