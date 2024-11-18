@@ -1,4 +1,7 @@
-function getComputerChoice(){
+humanScore = 0
+compScore = 0
+
+function getComputerChoice() {
     compChoice = Math.floor(Math.random() * 3);
 }
 
@@ -13,4 +16,14 @@ switch (compChoice){
     case 2:
         compChoice = "scissors"
         break
+}
+
+function getHumanChoice(){
+    humChoice = prompt("Rock, Paper or Scissors?")
+}
+
+getHumanChoice()
+
+function playround(humChoice, compChoice) {
+
 }
