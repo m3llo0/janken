@@ -2,6 +2,8 @@ let humanScore = 0
 let compScore = 0
 let humChoice
 let compChoice
+let roundCounter = 0
+let display = document.querySelector(".display > h2")
 
 //Method to randomise choice
 function getComputerChoice() {
@@ -9,7 +11,6 @@ function getComputerChoice() {
 }
 
 function playRound() {
-    var display = document.querySelector(".display > h1")
     compChoice = getComputerChoice()
 
    // Mapping random number to computer choice
@@ -26,7 +27,7 @@ function playRound() {
 } 
     //Game Mechanism for comparing choices
     if (humChoice == compChoice) {
-        display.textContent = "TIE!";
+        display.textContent = "It's a tie!";
     } else {
         switch(humChoice) {
             case "rock":
@@ -59,6 +60,7 @@ function playRound() {
             default: console.log("wtf man")
         }
     }
+    roundCounter += 1
 }
 
 function updateScore() {
@@ -66,26 +68,26 @@ function updateScore() {
     document.getElementById("compScore").textContent = `${compScore}`
 }
 
+function checkResult(){
+    if (humanScore == compScore){
+        display.textContent = "End of Game! It's a Tie!"
+    } else if (humanScore < compScore){
+        display.textContent = "End of Game! You have Lost!"
+    } else if (humanScore > compScore){
+        display.textContent = "End of Game! You have Won!"
+    }
+}
+
 const buttons = document.querySelectorAll("button")
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         humChoice = button.getAttribute("id")
-        playRound()
-        updateScore()
+        if (roundCounter == 5){
+            checkResult()
+        } else {
+            playRound()
+            updateScore()
+        }
     })
 })
 
-//Loop to create 5 rounds
-/*function playGame() {
-    for (let n=0; n<3; n++) {
-        playRound()
-    }
-    if (humanScore < compScore){
-        console.log("End of Game: GG go next loser LOL")
-    } else if (humanScore == compScore) {
-        console.log("End of Game: Hmm nubbad nubbad")
-    } else {
-        console.log("End of Game: YOU ARE A WINNER SIUUUUU!")
-    }
-}
-playGame()*/

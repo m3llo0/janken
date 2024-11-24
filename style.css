@@ -26,9 +26,14 @@ div.controls > button{
 .score {
     padding: 10px;
     text-align: center;
+    font-size: 20px;
 }
 
 .name{
     border-bottom: 2px solid #ddd;
     
+}
+.display{
+    text-align: center;
+    font-size: 20px;
 }
