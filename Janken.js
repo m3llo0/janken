@@ -8,15 +8,7 @@ function getComputerChoice() {
     return Math.floor(Math.random() * 3);
 }
 
-
-// Method to obtain user input and turn it case-insensitive
-function getHumanChoice(){
-    return prompt("Rock, Paper or Scissors?").toLowerCase()
-}
-
 function playRound() {
-    // Getting the player's input and assigning it to humChoice since its a global var
-    humChoice = getHumanChoice();
     console.log(humChoice)
 
     compChoice = getComputerChoice();
@@ -69,8 +61,16 @@ function playRound() {
     }
 }
 
+const buttons = document.querySelectorAll("button")
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        humChoice = button.getAttribute("id")
+        playRound()
+    })
+})
+
 //Loop to create 5 rounds
-function playGame() {
+/*function playGame() {
     for (let n=0; n<3; n++) {
         playRound()
     }
@@ -82,4 +82,4 @@ function playGame() {
         console.log("End of Game: YOU ARE A WINNER SIUUUUU!")
     }
 }
-playGame()
+playGame()*/
