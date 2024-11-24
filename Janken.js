@@ -9,9 +9,9 @@ function getComputerChoice() {
 }
 
 function playRound() {
-    console.log(humChoice)
+    var display = document.querySelector(".display > h1")
+    compChoice = getComputerChoice()
 
-    compChoice = getComputerChoice();
    // Mapping random number to computer choice
     switch (compChoice) {
         case 0:
@@ -26,34 +26,34 @@ function playRound() {
 } 
     //Game Mechanism for comparing choices
     if (humChoice == compChoice) {
-        console.log(`Tie! You: ${humanScore}, Computer: ${compScore}`)
+        display.textContent = "TIE!";
     } else {
         switch(humChoice) {
             case "rock":
                 if(compChoice == "scissors") {
                     humanScore += 1
-                    console.log(`Win! You: ${humanScore}, Computer: ${compScore}`)
+                    display.textContent = "Win! Rock beats Scissors!";
                 } else {
                     compScore += 1
-                    console.log(`Lose! You: ${humanScore}, Computer: ${compScore}`)
+                    display.textContent = "Lose! Paper beats Rock!";
                 }
                 break
             case "paper":
                 if(compChoice == "rock") {
                     humanScore += 1
-                    console.log(`Win! You: ${humanScore}, Computer: ${compScore}`)
+                    display.textContent = "Win! Paper beats Rock!";
                 } else {
                     compScore += 1
-                    console.log(`Lose! You: ${humanScore}, Computer: ${compScore}`)
+                    display.textContent = "Lose! Scissors beats Paper!";
                 }
                 break
             case "scissors":
                 if(compChoice == "paper") {
                     humanScore += 1
-                    console.log(`Win! You: ${humanScore}, Computer: ${compScore}`)
+                    display.textContent = "Win! Scissors beats Paper!";
                 } else {
                     compScore += 1
-                    console.log(`Lose! You: ${humanScore}, Computer: ${compScore}`)
+                    display.textContent = "Lose! Scissors beats Paperr!";
                 }
                 break
             default: console.log("wtf man")
@@ -61,11 +61,17 @@ function playRound() {
     }
 }
 
+function updateScore() {
+    document.getElementById("yourScore").textContent = `${humanScore}`
+    document.getElementById("compScore").textContent = `${compScore}`
+}
+
 const buttons = document.querySelectorAll("button")
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         humChoice = button.getAttribute("id")
         playRound()
+        updateScore()
     })
 })
 
